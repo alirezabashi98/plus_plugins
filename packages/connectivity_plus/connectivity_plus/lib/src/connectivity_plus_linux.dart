@@ -45,14 +45,14 @@ class ConnectivityPlusLinuxPlugin extends ConnectivityPlatform {
     if (client.connectivity == NetworkManagerConnectivityState.none) {
       results.add(ConnectivityResult.none);
     } else {
+      if (client.primaryConnectionType.contains('vpn')) {
+        results.add(ConnectivityResult.vpn);
+      }
       if (client.primaryConnectionType.contains('wireless')) {
         results.add(ConnectivityResult.wifi);
       }
       if (client.primaryConnectionType.contains('ethernet')) {
         results.add(ConnectivityResult.ethernet);
-      }
-      if (client.primaryConnectionType.contains('vpn')) {
-        results.add(ConnectivityResult.vpn);
       }
       if (client.primaryConnectionType.contains('bluetooth')) {
         results.add(ConnectivityResult.bluetooth);
